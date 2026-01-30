@@ -101,3 +101,16 @@ sources:
             description: Фактическое время вылета
           - name: actual_arrival
             description: Фактическое время прилета
+      - name: tickets
+        description: Билеты
+        columns:
+          - name: ticket_no
+            description: Номер билета
+          - name: book_ref
+            description: Номер бронирования
+          - name: passenger_id
+            description: Номер документа
+          - name: passenger_name
+            description: Полное имя пассажира
+          - name: contact_data
+            description: Является ли рейс прямым
