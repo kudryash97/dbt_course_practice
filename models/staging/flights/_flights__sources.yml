@@ -1,0 +1,54 @@
+sources:
+  - name: demo_src
+    description: Данные из БД авиаперелетов
+    database: dwh_flight
+    schema: demo_src
+    tables:
+      - name: aircrafts
+        description: Модели самолетов
+        columns:
+          - name: aircraft_code
+            description: Код модели самолета
+          - name: model
+            description: Название модели самолета
+          - name: range
+            description: Неизвестное поле
+      - name: airports
+        description: Аэропорты
+        columns:
+            - name: airport_code
+              description: Код аэропорта
+            - name: airport_name
+              description: Название аэропорта
+            - name: city
+              description: Город
+            - name: coordinates
+              description: Координаты
+            - name: timezone
+              description: Временная зона
+      - name: seats
+        description: Места в самолетах
+        columns:
+            - name: aircraft_code
+              description: Код модели самолета
+            - name: seat_no
+              description: Номера места
+            - name: fare_conditions
+              description: Тип места
+      - name: bookings
+        config:
+          # source.table.config.freshness overrides source.config.freshness
+          freshness: 
+            warn_after:
+              count: 600000
+              period: hour
+            error_after:
+              count: 10000
+              period: day
+            filter: current_timestamp::date - book_date::date < 30000
+          # changed to config in v1.10
+          loaded_at_field: book_date::timestamp
+        columns:
+          - name: book_ref
+          - name: book_date
+          - name: total_amount        
