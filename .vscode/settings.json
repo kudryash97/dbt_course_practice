@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.sql" : "jinja-sql"
+    },
+    "editor.languageConfiguration" : {
+        "comments" : {
+            "blockComment" : ["/*", "*/"],
+            "lineComment" : "--"
+        }
+    }
+}

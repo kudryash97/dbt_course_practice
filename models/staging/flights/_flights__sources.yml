@@ -12,7 +12,7 @@ sources:
           - name: model
             description: Название модели самолета
           - name: range
-            description: Неизвестное поле
+            description: Макс дальность полета
       - name: airports
         description: Аэропорты
         columns:
@@ -34,8 +34,9 @@ sources:
             - name: seat_no
               description: Номера места
             - name: fare_conditions
-              description: Тип места
+              description: Класс обслуживания
       - name: bookings
+        description: Бронирования
         config:
           # source.table.config.freshness overrides source.config.freshness
           freshness: 
@@ -50,5 +51,53 @@ sources:
           loaded_at_field: book_date::timestamp
         columns:
           - name: book_ref
+            description: Номер бронирования
           - name: book_date
-          - name: total_amount        
+            description: Дата бронирования
+          - name: total_amount
+            description: Полная сумма бронирования
+      - name: ticket_flights
+        description: Перелеты
+        columns:
+          - name: ticket_no
+            description: Номер билета
+          - name: flight_id
+            description: Идентификатора рейса
+          - name: fare_conditions
+            description: Класс обслуживания
+          - name: amount
+            description: Стоимость перелета
+      - name: boarding_passes
+        description: Посадочные таллоны
+        columns:
+          - name: ticket_no
+            description: Номер билета
+          - name: flight_id
+            description: Идентификатор рейса
+          - name: boarding_no
+            description: Номер посадочного таллона
+          - name: seat_no
+            description: Номер места
+      - name: flights
+        description: Рейсы
+        columns:
+          - name: flight_id
+            description: ID рейса
+          - name: flight_no
+            description: Номер маршрута
+          - name: scheduled_departure
+            description: Время вылета по расписанию
+          - name: scheduled_arrival
+            description: Время прилета по расписанию
+          - name: departure_airport
+            description: Аэропорт вылета
+          - name: arrival_airport
+            description: Аэропорт прибытия
+          - name: status
+            description: Статус рейса
+          - name: aircraft_code
+            description: Код модели самолета
+          - name: actual_departure
+            description: Фактическое время вылета
+          - name: actual_arrival
+            description: Фактическое время прилета
