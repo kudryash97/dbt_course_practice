@@ -1,0 +1,11 @@
+seeds:
+  - name: city_region
+    config:
+      column_types:
+        city: varchar(75)
+        region: varchar(75)
+    columns:
+      - name: city
+        tests:
+          - not_null
+          - unique
