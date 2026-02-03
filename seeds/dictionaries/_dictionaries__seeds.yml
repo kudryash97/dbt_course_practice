@@ -4,6 +4,7 @@ seeds:
       column_types:
         city: varchar(75)
         region: varchar(75)
+        updated_at: timestamp
     columns:
       - name: city
         tests:
